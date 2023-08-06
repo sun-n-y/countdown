@@ -49,11 +49,10 @@ const getHour = formatHour(futureDate.getHours());
 const getMinute = formatMin(futureDate.getMinutes());
 let ampm;
 
-console.log(hour2);
-
 function formatHour(num) {
   return hours[num];
 }
+console.log(getHour);
 
 function formatMin(num) {
   if (num <= 9) {
