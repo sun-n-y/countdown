@@ -25,10 +25,20 @@ const monthsArray = [
   'December',
 ];
 
+const hours = [
+  1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 1, 2, 3, 4, 6, 7, 8, 9, 10, 11, 12,
+];
+
 const giveaway = get('.giveaway-date');
 const timer = get('.countdown-timer');
 
-let futureDate = new Date(2023, 7, 5, 23, 36, 0);
+const today = new Date();
+
+const Date2 = today.getDate();
+const month2 = today.getMonth();
+console.log(Date2, month2);
+
+let futureDate = new Date(2023, month2, Date2, 23, 36, 0);
 
 const getYear = futureDate.getFullYear();
 const getDate = futureDate.getDate();
