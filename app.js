@@ -37,18 +37,39 @@ const today = new Date();
 const Date2 = today.getDate();
 const month2 = today.getMonth();
 const hour2 = today.getHours();
-console.log(Date2, month2, hour2);
+const mins2 = today.getMinutes();
 
-let futureDate = new Date(2023, month2, Date2, hour2, 59, 0);
+let futureDate = new Date(2023, month2, Date2 + 2, hour2, mins2, 0);
 
 const getYear = futureDate.getFullYear();
 const getDate = futureDate.getDate();
 const getDay = daysArray[futureDate.getDay()];
 const getMonth = monthsArray[futureDate.getMonth()];
-const getHour = futureDate.getHours();
-const getMinute = futureDate.getMinutes();
+const getHour = formatHour(futureDate.getHours());
+const getMinute = formatMin(futureDate.getMinutes());
+let ampm;
 
-giveaway.textContent = `Giveaway Ends On ${getDay}, ${getMonth} ${getDate} ${getYear} at ${getHour}:${getMinute} am`;
+console.log(hour2);
+
+function formatHour(num) {
+  return hours[num];
+}
+
+function formatMin(num) {
+  if (num <= 9) {
+    return `0${num}`;
+  } else {
+    return num;
+  }
+}
+
+if (hour2 >= 12) {
+  ampm = 'pm';
+} else {
+  ampm = 'am';
+}
+
+giveaway.textContent = `Giveaway Ends On ${getDay}, ${getMonth} ${getDate} ${getYear} at ${getHour}:${getMinute} ${ampm}`;
 
 const futureTime = futureDate.getTime();
 
