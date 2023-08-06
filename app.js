@@ -26,8 +26,9 @@ const monthsArray = [
 ];
 
 const giveaway = get('.giveaway-date');
+const timer = get('.countdown-timer');
 
-const futureDate = new Date(2023, 7, 6, 11, 10, 0);
+let futureDate = new Date(2023, 7, 6, 11, 10, 0);
 
 const getYear = futureDate.getFullYear();
 const getDate = futureDate.getDate();
@@ -40,12 +41,11 @@ giveaway.textContent = `Giveaway Ends On ${getDay}, ${getMonth} ${getDate} ${get
 
 const futureTime = futureDate.getTime();
 
-const currentDate = new Date();
-const currentTime = currentDate.getTime();
-
-const t = futureTime - currentTime;
-
 const getTime = function () {
+  const currentDate = new Date();
+  const currentTime = currentDate.getTime();
+  const t = futureTime - currentTime;
+
   const days = 24 * 60 * 60 * 1000;
   const hours = 60 * 60 * 1000;
   const mins = 60 * 1000;
@@ -63,6 +63,13 @@ const getTime = function () {
   spans.forEach(function (value, index) {
     value.textContent = values[index];
   });
+
+  if (t < 0) {
+    clearInterval(countdown);
+    timer.innerHTML = `<h4> Sorry, giveaway has ended</h4>`;
+  }
 };
+
+let countDown = setInterval(getTime, 1000);
 
 getTime();
